@@ -2,6 +2,9 @@ package com.webencyclop.demo.model;
 
 //needs more db setup. only user created
 
+import com.sun.istack.NotNull;
+import org.hibernate.validator.constraints.Length;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,24 +23,27 @@ import javax.persistence.Table;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "auth_user_id")
     private int id;
 
+    @NotNull(message="First name is compulsory")
     @Column(name = "first_name")
     private String name;
 
+    @NotNull(message="Last name is compulsory")
     @Column(name = "last_name")
     private String lastName;
 
+    @NotNull(message="Email is compulsory")
+    @Email(message="Email is invalid")
     @Column(name = "email")
     private String email;
 
+    @NotNull(message="password is compulsory")
+    @Length(min=5, message = "Password needs top be atleast 5 characters")
     @Column(name = "password")
     private String password;
-
-    @Column(name = "mobile")
-    private String mobile;
 
     @Column(name = "status")
     private String status;
@@ -85,14 +91,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
     }
 
     public String getStatus() {

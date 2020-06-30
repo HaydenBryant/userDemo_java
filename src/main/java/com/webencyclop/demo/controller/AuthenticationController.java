@@ -50,6 +50,9 @@ public class AuthenticationController {
             modelMap.addAttribute("bindingResult", bindingResult);
         } else if(userService.isUserAlreadyPresent(user)){
             modelAndView.addObject("successMessage", "user already exists");
+        } else {
+            userService.saveUser(user);
+            modelAndView.addObject("successMessage", "user successfully registered");
         }
         modelAndView.addObject("user", new User());
         modelAndView.setViewName("register"); //resources/template/register.html

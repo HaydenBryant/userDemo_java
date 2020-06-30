@@ -2,7 +2,6 @@ package com.webencyclop.demo.model;
 
 //needs more db setup. only user created
 
-import com.sun.istack.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.Set;
@@ -17,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "auth_user")
